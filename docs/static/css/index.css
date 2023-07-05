@@ -2,32 +2,26 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
-
-.footer .icon-link {
-    font-size: 25px;
-    color: #000;
-}
-
 .link-block a {
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.allcaps {
-  font-variant: small-caps;
+.button.is-rounded {
+  border-radius: 10px;
 }
 
 .teaser .hero-body {
   padding-top: 0;
-  padding-bottom: 3rem;
+  padding-bottom: 4rem;
 }
 
-.teaser {
+.publication-title {
   font-family: 'Google Sans', sans-serif;
 }
 
-
-.publication-title {
+.publication-authors {
+  font-family: 'Google Sans', sans-serif;
 }
 
 .publication-banner {
@@ -46,17 +40,10 @@ body {
 .publication-header .hero-body {
 }
 
-.publication-title {
-    font-family: 'Google Sans', sans-serif;
-}
-
-.publication-authors {
-    font-family: 'Google Sans', sans-serif;
-}
-
 .publication-venue {
+    margin-top: 6px;
+    margin-bottom: 5px;
     color: #555;
-    width: fit-content;
     font-weight: bold;
 }
 
@@ -107,50 +94,4 @@ body {
 }
 
 .publication-body img {
-}
-
-.results-carousel {
-  overflow: hidden;
-}
-
-.results-carousel .item {
-  margin: 5px;
-  overflow: hidden;
-  border: 1px solid #bbb;
-  border-radius: 10px;
-  padding: 0;
-  font-size: 0;
-}
-
-.results-carousel video {
-  margin: 0;
-}
-
-
-.interpolation-panel {
-  background: #f5f5f5;
-  border-radius: 10px;
-}
-
-.interpolation-panel .interpolation-image {
-  width: 100%;
-  border-radius: 5px;
-}
-
-.interpolation-video-column {
-}
-
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-#interpolation-image-wrapper {
-  width: 100%;
-}
-#interpolation-image-wrapper img {
-  border-radius: 5px;
 }
