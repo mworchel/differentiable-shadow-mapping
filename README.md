@@ -4,7 +4,9 @@
 
   <h1 align="center"><a href="https://mworchel.github.io/differentiable-shadow-mapping">Differentiable Shadow Mapping for Efficient Inverse Graphics</a></h1>
 
-  <h3 align="center">coming soon</h3>
+  <a href="https://mworchel.github.io/differentiable-shadow-mapping">
+    <img src="docs/static/images/teaser.jpg" alt="Logo" width="100%">
+  </a>
 
   <p align="center">
     <i>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2023</i>
