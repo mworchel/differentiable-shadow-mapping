@@ -75,6 +75,16 @@ body {
   /*color: #4286f4;*/
 }
 
+.teaser-video {
+  position: relative;
+  width: 32%;
+  margin-left:  2%;
+  margin-right: 2%;
+  overflow: hidden;
+  border: 2px solid black;
+  border-radius: 5px !important;
+}
+
 .publication-video {
     position: relative;
     width: 100%;
