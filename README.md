@@ -2,7 +2,7 @@
 
 <p align="center">
 
-  <h1 align="center">Differentiable Shadow Mapping for Efficient Inverse Graphics</h1>
+  <h1 align="center"><a href="https://mworchel.github.io/differentiable-shadow-mapping">Differentiable Shadow Mapping for Efficient Inverse Graphics</a></h1>
 
   <h3 align="center">coming soon</h3>
 
