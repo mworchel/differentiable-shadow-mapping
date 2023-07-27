@@ -1,0 +1,21 @@
+name: diffshadow
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8.10
+  - pip
+  - pytorch=1.12.1
+  - cudatoolkit=11.6.0
+  - pip:
+    - imageio==2.9.0
+    - imageio-ffmpeg==0.4.5
+    - largesteps==0.2.1
+    - matplotlib==3.4.3
+    - ninja==1.11.1
+    - numpy==1.22.4
+    - git+https://github.com/NVlabs/nvdiffrast.git@v0.3.1
+    - scipy==1.5.2
+    - tqdm==4.56.2
+    - trimesh==3.9.20
