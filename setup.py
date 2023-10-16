@@ -21,5 +21,5 @@ setup(
     license="MIT",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    packages=['diffshadow']
+    packages=['diffshadow', 'diffshadow.simple_renderer']
 )
