@@ -94,12 +94,12 @@ class SimpleRenderer:
         }
 
         # World-space positions
-        positions, _ = dr.interpolate(mesh.vertices[None], rast_out, mesh.faces)
+        positions, _ = dr.interpolate(mesh.vertices[None].contiguous(), rast_out, mesh.faces)
         gbuffer['position'] = positions[0]
 
         # World-space normals
         n_worldspace = (mesh.normals @ mesh.transform_inv_transposed.T[:3, :3])
-        normals, _ = dr.interpolate(n_worldspace[None], rast_out, mesh.faces)
+        normals, _ = dr.interpolate(n_worldspace[None].contiguous(), rast_out, mesh.faces)
         gbuffer['normal'] = normals[0]
         gbuffer['normal'] = torch.nn.functional.normalize(gbuffer['normal'], p=2, dim=-1)
 
@@ -111,7 +111,7 @@ class SimpleRenderer:
             diffuse_albedo = torch.tensor([[1]], device=mesh.vertices.device, dtype=torch.float32).expand(mesh.vertices.shape[0], -1)
         elif len(diffuse_albedo.shape) == 1:
             diffuse_albedo = diffuse_albedo[None, :].expand(mesh.vertices.shape[0], -1)
-        albedo, _ = dr.interpolate(diffuse_albedo[None], rast_out, mesh.faces)
+        albedo, _ = dr.interpolate(diffuse_albedo[None].contiguous(), rast_out, mesh.faces)
         gbuffer['diffuse_albedo'] = albedo[0]
 
         return gbuffer
