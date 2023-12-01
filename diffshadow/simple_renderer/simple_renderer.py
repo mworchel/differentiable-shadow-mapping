@@ -117,7 +117,7 @@ class SimpleRenderer:
         return gbuffer
 
 
-    def render(self, meshes: List[Mesh], lights: List[Union[DirectionalLight, SpotLight, PointLight]], camera: Camera, resolution: Tuple[int, int]=(512, 512), ambient: float = 0.1, background: float = 0, use_shadows: bool = True, smoothing_kernel_width: int = 3, smoothing_kernel: KernelType = KernelType.Box, use_shadow_antialiasing: bool = True, return_visibility: bool = False, return_mask: bool = False):
+    def render(self, meshes: List[Mesh], lights: List[Union[DirectionalLight, SpotLight, PointLight]], camera: Camera, resolution: Tuple[int, int]=(512, 512), ambient: float = 0.1, background: float = 0, use_shadows: bool = True, smoothing_kernel_width: int = 3, smoothing_kernel: KernelType = KernelType.Box, use_shadow_antialiasing: bool = True, return_visibility: bool = False, return_mask: bool = False, return_gbuffer: bool = False):
         # Apply model matrices and merge all meshes
         scene_mesh = merge_meshes([m.with_applied_transform() for m in meshes])
 
@@ -177,5 +177,8 @@ class SimpleRenderer:
 
         if return_mask:
             results += [ gbuffer['mask'] ]
+        
+        if return_gbuffer:
+            results += [ gbuffer ]
 
         return results[0] if len(results) == 1 else results
