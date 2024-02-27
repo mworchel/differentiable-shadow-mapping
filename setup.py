@@ -13,7 +13,7 @@ with open(this_directory / 'README.md', encoding='utf-8') as f:
 
 setup(
     name="diffshadow",
-    version="0.1.0",
+    version="0.1.1",
     author="Markus Worchel",
     author_email="m.worchel@tu-berlin.de",
     description="Differentiable shadow mapping",
