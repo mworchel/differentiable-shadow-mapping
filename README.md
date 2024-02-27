@@ -56,9 +56,11 @@ Alternatively, if you want to use the implementation without running any noteboo
 pip install git+https://github.com/mworchel/differentiable-shadow-mapping
 ```
 
-## Common Issues
+## Common Issues and Pitfalls
 
-[TODO]
+### "Rendered images are blank or I don't see any shadows"
+
+Shadow mapping relies on rendering from the perspective of the light. The frustum of these light cameras must contain the scene to generate useable data. A common pitfall is the incorrect configuration of near and far planes, such that the scene or parts of it are culled when rendering from the light perspective. Make sure the values of `near`, `far`, and `distance` (last only for directional lights) are properly adjusted to your scene and light positions.
 
 ## Citation
 
