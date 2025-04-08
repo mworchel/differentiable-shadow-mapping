@@ -1,6 +1,6 @@
 import math
 import torch
-from typing import List, Union
+from typing import List, Union, Tuple
 
 from .common import expand_to_common_batch_size, to_batched_tensor
 
@@ -194,12 +194,9 @@ def create_view_matrix_from_direction(direction: Union[List[float], torch.Tensor
     up = torch.tensor([0, 1, 0], dtype=torch.float32, device=device)[None].expand_as(cz)
     cx = torch.linalg.cross(up, cz, dim=-1)
 
-    if torch.isclose(torch.linalg.norm(cx), torch.tensor(0.0, device=device)):
-        # TODO: Choose more reasonable fallback?
-        cx = torch.tensor([[1, 0, 0]], dtype=torch.float32, device=device).expand_as(cx)
-    else:
-        cx = torch.nn.functional.normalize(cx, p=2, dim=-1)
-
+    invalid = torch.isclose(torch.linalg.norm(cx, dim=-1, keepdim=True), torch.tensor(0.0, device=device)) 
+    cx = torch.where(invalid, torch.tensor([1, 0, 0], dtype=torch.float32, device=device), cx)
+    cx = torch.nn.functional.normalize(cx, p=2, dim=-1)
     cy = torch.linalg.cross(cz, cx, dim=-1)
 
     R = torch.eye(4, dtype=torch.float32, device=device)[None].repeat(cx.shape[0], 1, 1)
