@@ -55,14 +55,14 @@ class DirectionalLights(UnidirectionalLights):
         resolution: Resolution of the associated shadow maps            (Height,Width)
     """
 
-    def __init__(self, direction: torch.Tensor, distance: torch.Tensor, size: torch.Tensor, near: torch.Tensor, far: torch.Tensor, resolution: Tuple[int, int], device: torch.device=None) -> None:
+    def __init__(self, direction: torch.Tensor, distance: torch.Tensor, size: torch.Tensor, near: torch.Tensor, far: torch.Tensor, resolution: Tuple[int, int], device: torch.device = None) -> None:
         super().__init__(create_view_matrix_from_direction(-direction, distance), create_orthographic_projection_matrix(size=size, near=near, far=far, device=direction.device), near, far, resolution)
         self.direction = direction  
         self.distance  = distance
         self.size      = size
 
     @classmethod
-    def create(cls, direction: Union[List, torch.Tensor], distance: Union[float, torch.Tensor], size: Union[float, torch.Tensor], near: Union[float, torch.Tensor], far: Union[float, torch.Tensor], resolution: Tuple[int, int], device=torch.device):
+    def create(cls, direction: Union[List, torch.Tensor], distance: Union[float, torch.Tensor], size: Union[float, torch.Tensor], near: Union[float, torch.Tensor], far: Union[float, torch.Tensor], resolution: Tuple[int, int], device: torch.device = None):
         """ Convenience interface for creating a single or multiple directional lights from potential non-tensor parameters
         """
         direction, distance, size, near, far, _ = expand_to_common_batch_size(direction, distance, size, near, far, batched_lengths=[2, 1, 1, 1, 1], dtype=torch.float32, device=device)
@@ -84,7 +84,7 @@ class SpotLights(UnidirectionalLights):
         self.fovy = fovy
 
     @classmethod
-    def create(cls, view_matrix: torch.Tensor, fovy: Union[float, torch.Tensor], near: Union[float, torch.Tensor], far: Union[float, torch.Tensor], resolution: Tuple[int, int], device=torch.device):
+    def create(cls, view_matrix: torch.Tensor, fovy: Union[float, torch.Tensor], near: Union[float, torch.Tensor], far: Union[float, torch.Tensor], resolution: Tuple[int, int], device: torch.device = None):
         """ Convenience interface for creating a single or multiple spot lights from potential non-tensor parameters
         """
         view_matrix, fovy, near, far, _ = expand_to_common_batch_size(view_matrix, fovy, near, far, batched_lengths=[3, 1, 1, 1], dtype=torch.float32, device=device)
@@ -110,7 +110,7 @@ class PointLights(BaseLights):
         self.projection_matrix = create_perspective_projection_matrix(fovy=90, aspect=resolution[1]/resolution[0], near=near, far=far, device=position.device).repeat_interleave(6, 0)
 
     @classmethod
-    def create(cls, position: Union[List[float], torch.Tensor], near: Union[float, torch.Tensor], far: Union[float, torch.Tensor], resolution: Tuple[int, int], device=torch.device):
+    def create(cls, position: Union[List[float], torch.Tensor], near: Union[float, torch.Tensor], far: Union[float, torch.Tensor], resolution: Tuple[int, int], device: torch.device = None):
         """ Convenience interface for creating a single or multiple point lights from potential non-tensor parameters
         """
         position, near, far, _ = expand_to_common_batch_size(position, near, far, batched_lengths=[2, 1, 1], dtype=torch.float32, device=device)
