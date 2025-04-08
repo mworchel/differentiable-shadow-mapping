@@ -14,7 +14,11 @@ def to_batched_tensor(x: torch.tensor, batched_length: int, batch_size: int, dty
     x = to_tensor(x, dtype=dtype, device=device)
 
     if len(x.shape) != batched_length:
-        x = x[None].expand(batch_size, *x.shape)
+        # Example: A tensor with shape (1,4) and batched_length=4, batch_size=10
+        #          should be expanded to (10, 1, 1, 4)
+        assert batched_length > len(x.shape)
+        num_missing_dims = batched_length - len(x.shape)
+        x = x.reshape(*([1]*num_missing_dims), *x.shape).expand(batch_size, *([1]*(num_missing_dims-1)), *x.shape)
     
     return x
 
