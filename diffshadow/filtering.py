@@ -72,6 +72,10 @@ def apply_filter_2d(image: torch.Tensor, kernel: torch.Tensor, padding_mode: str
     padding      = (kernel.shape[2]//2, kernel.shape[2]//2, kernel.shape[2]//2, kernel.shape[2]//2)
     image_padded = torch.nn.functional.pad(image.permute(0, 3, 1, 2), padding, mode=padding_mode)
 
-    image_filtered = torch.nn.functional.conv2d(image_padded, kernel).permute(0, 2, 3, 1)
+    num_channels = image.shape[-1]
+    if kernel.shape[0] != num_channels:
+        kernel = kernel.repeat(num_channels, 1, 1, 1)
+
+    image_filtered = torch.nn.functional.conv2d(image_padded, kernel, groups=num_channels).permute(0, 2, 3, 1)
 
     return image_filtered if is_batched else image_filtered[0]
