@@ -9,9 +9,9 @@
   <p align="center">
     <i>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2023</i>
     <br />
-    <a href="https://github.com/mworchel"><strong>Markus Worchel</strong></a>
+    <a href="https://mworchel.github.io/"><strong>Markus Worchel</strong></a>
     ·
-    <a href="https://www.cg.tu-berlin.de/people/marc-alexa"><strong>Marc Alexa</strong></a>
+    <a href="https://cg.tu-berlin.de/people/marc-alexa"><strong>Marc Alexa</strong></a>
   </p>
 </p>
 
